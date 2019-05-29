@@ -1,7 +1,5 @@
 package sitemap
 
-import org.apache.commons.io.FileUtils
-import java.io.File
 import java.net.URL
 import javax.xml.parsers.SAXParserFactory
 
@@ -10,20 +8,17 @@ import javax.xml.parsers.SAXParserFactory
  *
  * @author Ignacio Slater Muñoz
  */
-class SitemapParser {
+class EHSitemapParser {
     var sitemapUrls: List<String>
         private set
 
     init {
         val factory = SAXParserFactory.newInstance()
         val saxParser = factory.newSAXParser()
-        val sitemapIndexUrl = URL("https://xml.e-hentai.org/sitemap_index.xml")
-        val sitemapIndex = File("SitemapIndex.xml")
+        val sitemapIndex = URL("https://xml.e-hentai.org/sitemap_index.xml").openStream()
         val handler = SitemapHandler()
-        FileUtils.copyURLToFile(sitemapIndexUrl, sitemapIndex)
 
         saxParser.parse(sitemapIndex, handler)
         sitemapUrls = handler.urlList
-        sitemapIndex.delete()
     }
 }

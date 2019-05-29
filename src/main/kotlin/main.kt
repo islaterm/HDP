@@ -1,7 +1,7 @@
-import sitemap.SitemapParser
+import sitemap.EHSitemapParser
 
 fun main() {
-    val parser = SitemapParser()
+    val parser = EHSitemapParser()
     for (url in parser.sitemapUrls) {
         println(url)
     }

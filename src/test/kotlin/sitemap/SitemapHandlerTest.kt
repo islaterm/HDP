@@ -11,7 +11,6 @@ import javax.xml.parsers.SAXParserFactory
 
 internal class SitemapHandlerTest {
 
-
     private lateinit var handler: SitemapHandler
     private lateinit var saxParser: SAXParser
     private lateinit var testXML: File
