@@ -30,7 +30,8 @@ class SitemapHandler : DefaultHandler() {
     }
 
     override fun characters(ch: CharArray?, start: Int, length: Int) {
-        data.append(ch?.let { String(it, start, length) })
+        if (inLoc)
+            data.append(ch?.let { String(it, start, length) })
     }
 
     /** Resets the handler  */
