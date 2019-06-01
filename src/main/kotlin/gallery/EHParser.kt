@@ -1,3 +1,5 @@
+package gallery
+
 class EHParser {
     @Suppress("UNUSED_PARAMETER")
     fun parse(url: String): EHGallery {
