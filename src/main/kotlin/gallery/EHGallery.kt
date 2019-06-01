@@ -1,6 +1,10 @@
 package gallery
 
 class EHGallery(jsonString: String) {
+    fun serialize(): Pair<String, String> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     val url: String = ""
     val tags: List<String> = emptyList()
     val torrentCount: Int = 0
