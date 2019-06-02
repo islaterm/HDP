@@ -1,5 +1,6 @@
 package sitemap
 
+import java.io.InputStream
 import java.net.URL
 import java.util.zip.GZIPInputStream
 import javax.xml.parsers.SAXParser
@@ -43,7 +44,7 @@ class EHSitemapParser {
                 "User-Agent",
                 "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
             )
-            val gzipSitemap = GZIPInputStream(urlConnection.getInputStream())
+            val gzipSitemap = GZIPInputStream(urlConnection.getInputStream()) as InputStream
             saxParser.parse(gzipSitemap, handler)
             // Get the parsed urls and filter the ones that are not galleries
             galleriesURL = handler.urlList.filter { it.startsWith("https://e-hentai.org/g/") }
