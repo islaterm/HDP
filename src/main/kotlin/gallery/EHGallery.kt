@@ -70,23 +70,20 @@ class EHGallery(jsonString: String) {
     }
 
     /**
-     * Returns a pair of strings with a serializable version of this gallery
+     * Returns a pair of strings with a tsv version of this gallery
      */
-    fun serialize(): Pair<String, String> {
-        return Pair(
-            // Single column containing the basic gallery data
-            "$id\t$token\t$archiverKey\t$title\t$titleJpn\t$category\t$thumbnailLink\t$uploader\t$posted\t" +
-                    "$fileCount\t$fileSize\t$expugned\t$rating\t$torrentCount\n",
-            // Maps each tag so that every column is formed of the gallery id a tag category and the respective tag
-            "${(tags.map {
-                val aux = it.split(":") // Subtags are defined by ':'
-                if (aux.size > 1) { // When there are subtags, the middle column indicates the tag category
-                    "$id\t${aux[0]}\t${aux[1]}"
-                } else {    // When there are no subtags, the middle column stays empty (it has no category)
-                    "$id\t\t$it"
-                }
-            }).joinToString(System.lineSeparator())}${System.lineSeparator()}"
-        )
-
-    }
+    fun toTSV() = Pair(
+        // Single column containing the basic gallery data
+        "$id\t$token\t$archiverKey\t$title\t$titleJpn\t$category\t$thumbnailLink\t$uploader\t$posted\t" +
+                "$fileCount\t$fileSize\t$expugned\t$rating\t$torrentCount\n",
+        // Maps each tag so that every column is formed of the gallery id a tag category and the respective tag
+        "${(tags.map {
+            val aux = it.split(":") // Subtags are defined by ':'
+            if (aux.size > 1) { // When there are subtags, the middle column indicates the tag category
+                "$id\t${aux[0]}\t${aux[1]}"
+            } else {    // When there are no subtags, the middle column stays empty (it has no category)
+                "$id\t\t$it"
+            }
+        }).joinToString(System.lineSeparator())}${System.lineSeparator()}"
+    )
 }

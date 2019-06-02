@@ -56,10 +56,10 @@ internal class EHGalleryTest {
     }
 
     @Test
-    fun serializeTest() {
+    fun toTSVTest() {
         val tagsTest = Paths.get("src", "test", "resources", "TagsTest.tsv").toFile()
         val galleryTest = Paths.get("src", "test", "resources", "GalleryTest.tsv").toFile()
-        val (galleryTable, tagsTable) = gallery.serialize()
+        val (galleryTable, tagsTable) = gallery.toTSV()
         assertEquals(galleryTest.readText().trim(), galleryTable.trim())
         assertEquals(tagsTest.readText().trim(), tagsTable.trim())
     }
