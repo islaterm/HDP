@@ -61,6 +61,11 @@ internal class EHGalleryTest {
         val galleryTest = Paths.get("src", "test", "resources", "GalleryTest.tsv").toFile()
         val (galleryTable, tagsTable) = gallery.toTSV()
         assertEquals(galleryTest.readText().trim(), galleryTable.trim())
-        assertEquals(tagsTest.readText().trim(), tagsTable.trim())
+        val tagsTableEntries = tagsTable.split(System.lineSeparator())
+        var i = 0
+        tagsTest.forEachLine {
+            val row = tagsTableEntries[i++].split("\t")
+            it.split("\t").forEachIndexed { index, s -> assertEquals(s.trim(), row[index].trim()) }
+        }
     }
 }
