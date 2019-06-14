@@ -1,11 +1,11 @@
+import khttp.post
 import sitemap.EHSitemapParser
 
 fun main() {
     val parser = EHSitemapParser()
-    for (url in parser.sitemapUrls) {
-        println(url)
-    }
-    /*val randomUrl = handler.urlList.random()
+    parser.parseSitemaps()
+
+    val randomUrl = parser.galleriesURL.random()
 
     val (galleryId, galleryToken) = randomUrl.replace("https://e-hentai.org/g/", "").split("/")
     val data = mapOf(
@@ -14,17 +14,5 @@ fun main() {
         "namespace" to 1
     )
     val response = post("https://api.e-hentai.org/api.php", json = data)
-    val result = ObjectMapper().readValue(response.text, HashMap::class.java)
-    val mdataList = result["gmetadata"] as List<*>
-    println(randomUrl)
-    for (mdata in mdataList) {
-        val galleryData = mdata as Map<*, *>
-        val tags = galleryData["tags"] as List<*>
-        for (tag in tags) {
-            println(tag)
-        }
-    }*/
-    //if (result != null)
-    //for (elem in result.metaData)
-    //println(elem)
+    println(response.jsonObject.toString(2))
 }
