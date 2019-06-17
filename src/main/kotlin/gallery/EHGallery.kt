@@ -1,7 +1,5 @@
 package gallery
 
-import com.fasterxml.jackson.databind.ObjectMapper
-
 //region keys of the json dictionary
 const val ID_KEY = "gid"
 const val TOKEN_KEY = "token"
@@ -24,49 +22,27 @@ const val TAGS_KEY = "tags"
  * This class contains the metadata of a gallery of e-hentai.org
  *
  * @constructor initiates the values of the gallery from a json string
- * @param jsonString the string representing the gallery data
+ * @param jsonMap the string representing the gallery data
  * @author [Ignacio Slater Muñoz](islaterm@gmail.com)
  */
-class EHGallery(jsonString: String) {
-    val id: Int
-    val token: String
-    val url: String
-    val archiverKey: String
-    val tags: List<String>
-    val torrentCount: Int
-    val rating: Double
-    val expugned: Boolean
-    val fileSize: Int
-    val fileCount: Int
-    val posted: Int
-    val uploader: String
-    val thumbnailLink: String
-    val category: String
-    val titleJpn: String
-    val title: String
-
-    init {
-        val jsonMap = ObjectMapper().readValue(jsonString, HashMap::class.java)
-        id = jsonMap[ID_KEY] as Int
-        token = jsonMap[TOKEN_KEY] as String
-        url = "https://e-hentai.org/g/$id/$token/"
-        archiverKey = jsonMap[ARCHIVER_KEY] as String
-        title = jsonMap[TITLE_KEY] as String
-        titleJpn = jsonMap[TITLE_JPN_KEY] as String
-        category = jsonMap[CATEGORY_KEY] as String
-        thumbnailLink = jsonMap[THUMBNAIL_KEY] as String
-        uploader = jsonMap[UPLOADER_KEY] as String
-        posted = (jsonMap[POSTED_KEY] as String).toInt()
-        fileCount = (jsonMap[FILECOUNT_KEY] as String).toInt()
-        fileSize = jsonMap[FILESIZE_KEY] as Int
-        expugned = jsonMap[EXPUGNED_KEY] as Boolean
-        rating = (jsonMap[RATING_KEY] as String).toDouble()
-        torrentCount = (jsonMap[TORRENT_COUNT_KEY] as String).toInt()
-        val auxTaglist = mutableListOf<String>()
-        for (tag in jsonMap[TAGS_KEY] as List<*>) {
-            auxTaglist.add(tag as String)
-        }
-        tags = auxTaglist.toList()
+class EHGallery(jsonMap: Map<*, *>) {
+    val id = jsonMap[ID_KEY] as Int
+    val token = jsonMap[TOKEN_KEY] as String
+    val archiverKey = jsonMap[ARCHIVER_KEY] as String
+    val torrentCount = (jsonMap[TORRENT_COUNT_KEY] as String).toInt()
+    val rating = (jsonMap[RATING_KEY] as String).toDouble()
+    val expugned = jsonMap[EXPUGNED_KEY] as Boolean
+    val fileSize = jsonMap[FILESIZE_KEY] as Int
+    val fileCount = (jsonMap[FILECOUNT_KEY] as String).toInt()
+    val posted = (jsonMap[POSTED_KEY] as String).toInt()
+    val uploader = jsonMap[UPLOADER_KEY] as String
+    val thumbnailLink = jsonMap[THUMBNAIL_KEY] as String
+    val category = jsonMap[CATEGORY_KEY] as String
+    val titleJpn = jsonMap[TITLE_JPN_KEY] as String
+    val title = jsonMap[TITLE_KEY] as String
+    val url = "https://e-hentai.org/g/$id/$token/"
+    val tags = List((jsonMap[TAGS_KEY] as List<*>).size) {
+        (jsonMap[TAGS_KEY] as List<*>)[it] as String
     }
 
     /**

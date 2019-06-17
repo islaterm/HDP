@@ -1,5 +1,6 @@
 package gallery
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -14,7 +15,12 @@ internal class EHGalleryTest {
     @BeforeEach
     fun setUp() {
         val jsonString = File(testJsonGalleryPath.toUri()).readText()  // Reads a json file with test data for a gallery
-        gallery = EHGallery(jsonString) // Creates the gallery from the json string
+        gallery = EHGallery(
+            ObjectMapper().readValue(
+                jsonString,
+                HashMap::class.java
+            )
+        ) // Creates the gallery from the json string
     }
 
     @Test
