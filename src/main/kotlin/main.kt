@@ -9,12 +9,15 @@ fun main() {
     val randomUrl = parser.galleriesURL.random()
 
     val (galleryId, galleryToken) = randomUrl.replace("https://e-hentai.org/g/", "").split("/")
-    val data = mapOf(
+    val query = mapOf(
         "method" to "gdata",
         "gidlist" to listOf(listOf(galleryId, galleryToken)),
         "namespace" to 1
     )
-    val response = post("https://api.e-hentai.org/api.php", json = data)
-    val gallery = EHGallery(response.jsonObject as Map<*, *>)
-    println(response.jsonObject.toString(2))
+    val response = post("https://api.e-hentai.org/api.php", json = query)
+    val gMetadata = response.jsonObject.getJSONArray("gmetadata").toList()
+    for (entryMetadata in gMetadata) {
+        val gallery = EHGallery(entryMetadata as Map<*, *>)
+        println(gallery.toTSV())
+    }
 }
