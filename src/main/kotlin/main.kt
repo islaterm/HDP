@@ -1,3 +1,4 @@
+import gallery.EHGallery
 import khttp.post
 import sitemap.EHSitemapParser
 
@@ -14,5 +15,6 @@ fun main() {
         "namespace" to 1
     )
     val response = post("https://api.e-hentai.org/api.php", json = data)
+    val gallery = EHGallery(response.jsonObject as Map<*, *>)
     println(response.jsonObject.toString(2))
 }
