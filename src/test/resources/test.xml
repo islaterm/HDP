@@ -1,0 +1,10 @@
+<sitemapindex>
+    <sitemap>
+        <loc>loc_1</loc>
+        <lastmod>lastmod</lastmod>
+    </sitemap>
+    <tag>tag</tag>
+    <sitemap>
+        <loc>loc_2</loc>
+    </sitemap>
+</sitemapindex>
