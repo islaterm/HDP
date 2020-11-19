@@ -1,4 +1,4 @@
-package cl.ravenhill.hentaidp.gallery
+package cl.ravenhill.hentai.dp.gf.gallery
 
 // region : keys of the json dictionary
 const val ID_KEY = "gid"

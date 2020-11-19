@@ -1,10 +1,10 @@
-package cl.ravenhill.hentaidp.gallery
+package cl.ravenhill.hentai.dp.gf.gallery
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 import khttp.post
 import khttp.responses.Response
-import org.slf4j.LoggerFactory
+//import org.slf4j.LoggerFactory
 import java.io.File
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -21,7 +21,7 @@ class EHParser(
   private val galleriesDataFile: File? = null,
   private val galleriesTagsFile: File? = null
 ) {
-  private val logger = LoggerFactory.getLogger(javaClass)
+//  private val logger = LoggerFactory.getLogger(javaClass)
   private val cache: ArrayList<String>
   private val cacheFile = File("${System.getProperty("user.dir")}/src/main/cache.json")
 
@@ -54,7 +54,7 @@ class EHParser(
         if (idTokenPair[0] !in cache) {
           keys.add(it.replace("https://e-hentai.org/g/", "").split("/"))
         } else {
-          logger.info("$it already processed, skipping.")
+//          logger.info("$it already processed, skipping.")
         }
       }
       if (keys.isNotEmpty()) {
@@ -63,9 +63,9 @@ class EHParser(
           "gidlist" to keys,
           "namespace" to 1
         )
-        logger.info("Fetched ${totalGalleries - urlsToParse.size} / $totalGalleries galleries")
+//        logger.info("Fetched ${totalGalleries - urlsToParse.size} / $totalGalleries galleries")
         Thread.sleep(10_000)  // Waiting to avoid overloading the server
-        logger.info("Retrieving info for $data")
+//        logger.info("Retrieving info for $data")
         var retryDelay = 1000L
         while (true) {
           try {
@@ -74,9 +74,9 @@ class EHParser(
           } catch (e: Exception) {
             when (e) {
               is SocketTimeoutException, is ConnectException -> {
-                logger.error("${e.cause}")
-                logger.error(e.message)
-                logger.warn("Waiting for ${retryDelay / 1000} seconds.")
+//                logger.error("${e.cause}")
+//                logger.error(e.message)
+//                logger.warn("Waiting for ${retryDelay / 1000} seconds.")
                 Thread.sleep(retryDelay)
                 retryDelay *= 2
               }
@@ -91,8 +91,8 @@ class EHParser(
         for (gallery in galleries) {
           try {
             val (gData, gTags) = EHGallery(gallery as Map<*, *>).toTSV()
-            logger.info("Gallery data: $gData")
-            logger.info("Gallery tags: $gTags")
+//            logger.info("Gallery data: $gData")
+//            logger.info("Gallery tags: $gTags")
             if (gData.isNotBlank()) {
               parsedMetadata.append(gData)
             }
@@ -100,10 +100,10 @@ class EHParser(
               parsedTags.append(gTags)
             }
           } catch (e: Exception) {
-            logger.error(
-              "Couldn't parse gallery.\n\t" +
-                  "$gallery is not a valid gallery"
-            )
+//            logger.error(
+//              "Couldn't parse gallery.\n\t" +
+//                  "$gallery is not a valid gallery"
+//            )
           }
         }
         if (save) {

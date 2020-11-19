@@ -1,6 +1,6 @@
-package cl.ravenhill.hentaidp.sitemap
+package cl.ravenhill.hentai.dp.gf.sitemap
 
-import org.slf4j.LoggerFactory
+//import org.slf4j.LoggerFactory
 import java.io.InputStream
 import java.net.URL
 import java.util.zip.GZIPInputStream
@@ -13,15 +13,14 @@ import javax.xml.parsers.SAXParserFactory
  * @author Ignacio Slater Muñoz
  */
 class EHSitemapParser {
-  private val logger = LoggerFactory.getLogger(javaClass)
+//  private val logger = LoggerFactory.getLogger(javaClass)
 
   /** List of links to the galleries */
   var galleriesURL = listOf<String>()
     private set
 
   /** List with the link to the sitemaps  */
-  var sitemapUrls: List<String>
-    private set
+  private var sitemapUrls: List<String>
   private val saxParser: SAXParser
   private val handler: SitemapHandler
 
@@ -42,7 +41,7 @@ class EHSitemapParser {
    */
   fun parseSitemaps() {
     for (url in sitemapUrls) {
-      logger.info("Parsing sitemap: $url")
+//      logger.info("Parsing sitemap: $url")
       val sitemapURL = URL(url)
       val urlConnection = sitemapURL.openConnection() // Opens a connection to the url
       urlConnection.setRequestProperty(   // Sets a User-Agent (to avoid error 403)

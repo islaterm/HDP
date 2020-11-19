@@ -1,7 +1,7 @@
-package cl.ravenhill.hentaidp
+package cl.ravenhill.hentai.dp.gf
 
-import cl.ravenhill.hentaidp.gallery.EHParser
-import cl.ravenhill.hentaidp.sitemap.EHSitemapParser
+import cl.ravenhill.hentai.dp.gf.gallery.EHParser
+import cl.ravenhill.hentai.dp.gf.sitemap.EHSitemapParser
 import java.io.File
 
 private val srcDir = "${System.getProperty("user.dir")}/src/main"

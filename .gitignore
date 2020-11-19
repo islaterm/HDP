@@ -1,6 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Gradle template
-.gradle
+gf/.gradle
 **/build/
 !src/**/build/
 
@@ -169,3 +169,4 @@ $RECYCLE.BIN/
 *.lnk
 
 .idea/sonarlint
+

@@ -1,4 +1,4 @@
-package cl.ravenhill.hentaidp.sitemap
+package cl.ravenhill.hentai.dp.gf.sitemap
 
 import org.xml.sax.Attributes
 import org.xml.sax.helpers.DefaultHandler

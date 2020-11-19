@@ -2,9 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="EHParser" target="15" />
-      <module name="Parser.EHParser.main" target="15" />
-      <module name="Parser.EHParser.test" target="15" />
+      <module name="cl.ravenhill.hdp" target="15" />
+      <module name="cl.ravenhill.hdp.main" target="15" />
+      <module name="cl.ravenhill.hdp.test" target="15" />
     </bytecodeTargetLevel>
   </component>
 </project>

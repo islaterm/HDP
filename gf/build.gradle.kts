@@ -1,5 +1,6 @@
 plugins {
   kotlin("jvm") version "1.4.10"
+  id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
 group = "cl.ravenhill"
@@ -10,6 +11,7 @@ repositories {
   jcenter()
 }
 
+// Kotlin
 dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib")
   implementation("org.jetbrains.kotlin:kotlin-reflect:1.3.30")
